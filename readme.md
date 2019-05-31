@@ -1,7 +1,7 @@
 # NLP demo by the `spacy` package
 
 ## description
-It's a sample of NLP (Natural Language Processing) that was implemented for simple phrace recognition.
+It's a sample of NLP (Natural Language Processing) that was implemented for simple phrase recognition.
 
 ## preparing
 ```
