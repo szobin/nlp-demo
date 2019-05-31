@@ -1,0 +1,8 @@
+spacy
+aiohttp
+jinja2
+aiohttp_jinja2
+
+# -U == --upgrade
+# pip install -U spaCy
+# python -m spacy download en

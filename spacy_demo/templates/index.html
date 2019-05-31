@@ -1,0 +1,72 @@
+﻿<html>
+<head>
+  <title>Spacy demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+  <header style="height: 50px;">
+  </header> 
+  <main>
+  <div class="card mb-3">
+     <div class="card-header"> Spacy demo </div> 
+     <div class="card-body">
+
+<div class="form-group">
+  <label for="txt">Text for spacy:</label>
+  <textarea class="form-control" rows="5" id="txt">{{txt}}</textarea>
+</div>
+
+  <div class="row" style="margin-bottom:16px;">
+    <div class="col-md-12">
+        <button class="btn btn-primary" role="button" id="to_ent">To ENTITY</button>
+        <button class="btn btn-info" role="button" id="to_chunk">To CHUNK</button>
+    </div>
+  </div> 
+  <div class="row">
+    <div class="col-md-12" id="container">
+    </div>
+  </div> 
+
+     </div>  
+  </div>  
+
+  </main>
+</div>
+
+</body>
+<script>
+
+let input_txt = document.querySelector('textarea#txt');
+let container = document.querySelector('div#container');
+let btn_to_ent = document.querySelector('button#to_ent');
+let btn_to_chk = document.querySelector('button#to_chunk');
+var xhttp = new XMLHttpRequest();
+
+function recv_handler() {
+  if (this.readyState == 4 && this.status == 200) {
+       container.innerHTML = xhttp.responseText;
+  }
+}
+
+xhttp.onreadystatechange = recv_handler;
+
+
+function fetch_nlp_display(style) {
+  const txt = input_txt.value;
+  xhttp.open("GET", "http://localhost:8080/nlp/display?style="+style+"&txt="+txt, true);
+  xhttp.send();   
+}
+
+function fetch_nlp_ent() { fetch_nlp_display('ent'); }
+function fetch_nlp_chunk() { fetch_nlp_display('dep'); }
+
+btn_to_ent.addEventListener('click', fetch_nlp_ent);
+btn_to_chk.addEventListener('click', fetch_nlp_chunk);
+
+
+</script>
+</html>
